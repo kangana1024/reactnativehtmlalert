@@ -9,7 +9,6 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import { WebView } from "react-native-webview";
-//import HTMLView from "react-native-htmlview";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -43,7 +42,13 @@ export default class App extends Component {
             source={{ uri: "http://showcase.showkhun.com/demohtml/" }}
             style={{ flex: 1 }}
             onMessage={event => {
-              alert(event.nativeEvent.data);
+              console.log(event.nativeEvent.data);
+              this.setState(
+                {
+                  loadHtml: event.nativeEvent.data
+                },
+                () => alert(this.state.loadHtml)
+              );
             }}
           />
         </View>
